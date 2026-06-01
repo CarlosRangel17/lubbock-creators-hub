@@ -6,7 +6,7 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite",
-    "vercel dev": "pnpm vercel dev"
+    "vercel dev": "yarn && pnpm vercel dev --local-config vercel.json"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",

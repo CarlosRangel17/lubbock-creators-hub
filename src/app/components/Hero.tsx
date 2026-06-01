@@ -149,10 +149,10 @@ export function Hero() {
 
         {/* Social links */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.25 }} className="flex items-center gap-3 mb-8">
-          {[{ icon: <Linkedin size={15} />, label: "LinkedIn" }, { icon: <Github size={15} />, label: "GitHub" }].map((s) => (
+          {[{ icon: <Linkedin size={15} />, label: "LinkedIn", url: 'https://www.linkedin.com/in/carlos-r-rangel/' }, { icon: <Github size={15} />, label: "GitHub", url:  "https://github.com/CarlosRangel17/" }].map((s) => (
             <a
               key={s.label}
-              href="#"
+              href={s.url} 
               aria-label={s.label}
               className="flex items-center justify-center w-9 h-9 rounded-xl transition-all"
               style={{

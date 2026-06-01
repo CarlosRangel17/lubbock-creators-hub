@@ -140,8 +140,8 @@ export function Navbar() {
           </div>
 
           {/* Right side controls */}
-          {/* <div className="flex items-center gap-2">
-            <motion.button
+          <div className="flex items-center gap-2">
+            {/* <motion.button
               onClick={openAuthModal}
               whileTap={{ scale: 0.88 }}
               className="hidden md:flex items-center justify-center w-9 h-9 rounded-xl transition-all relative"
@@ -162,7 +162,7 @@ export function Navbar() {
               ) : (
                 <User size={15} />
               )}
-            </motion.button>
+            </motion.button> */}
 
             <motion.button
               onClick={toggle}
@@ -210,7 +210,7 @@ export function Navbar() {
                 )}
               </AnimatePresence>
             </button>
-          </div> */}
+          </div>
         </div>
       </nav>
 
