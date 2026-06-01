@@ -3,6 +3,10 @@
   import App from "./app/App.tsx";
   import { registerServiceWorker } from "./app/lib/serviceWorkerRegistration.ts";
   import "./styles/index.css";
+  import { inject } from '@vercel/analytics'; 
+
+// Initialize Vercel tracking layers automatically
+inject();
 
 // Register the PWA service worker background layer
 registerServiceWorker()

@@ -7,7 +7,6 @@
 
 import type { ContactPayload, ContactResponse } from "../types/contact";
 
-// const PORT_3000 = "http://localhost:3000/"
 const API_BASE = (import.meta.env.CONTACT_API_BASE_URL as string | undefined) ?? "";
 const CONTACT_ENDPOINT = `${API_BASE}/api/contact`;
 const API_KEY = (import.meta.env.VITE_CONTACT_API_KEY as string | undefined) ?? "";
