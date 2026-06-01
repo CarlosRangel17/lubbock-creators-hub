@@ -1,12 +1,16 @@
 
   import { createRoot } from "react-dom/client";
   import App from "./app/App.tsx";
-  import { registerServiceWorker } from "./app/lib/serviceWorkerRegistration.ts";
   import "./styles/index.css";
-  import { inject } from '@vercel/analytics'; 
+import { inject as injectAnalytics } from '@vercel/analytics'; 
+import { injectSpeedInsights } from '@vercel/speed-insights'; 
+  import { registerServiceWorker } from "./app/lib/serviceWorkerRegistration.ts";
 
-// Initialize Vercel tracking layers automatically
-inject();
+// 1. Initialize custom event metrics and user telemetry pipelines
+injectAnalytics();
+
+// 2. Initialize Core Web Vitals monitoring and performance analytics
+injectSpeedInsights();
 
 // Register the PWA service worker background layer
 registerServiceWorker()
