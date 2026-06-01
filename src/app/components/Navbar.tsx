@@ -140,8 +140,7 @@ export function Navbar() {
           </div>
 
           {/* Right side controls */}
-          <div className="flex items-center gap-2">
-            {/* Auth trigger */}
+          {/* <div className="flex items-center gap-2">
             <motion.button
               onClick={openAuthModal}
               whileTap={{ scale: 0.88 }}
@@ -211,7 +210,7 @@ export function Navbar() {
                 )}
               </AnimatePresence>
             </button>
-          </div>
+          </div> */}
         </div>
       </nav>
 
