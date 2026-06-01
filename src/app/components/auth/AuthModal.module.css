@@ -1,0 +1,159 @@
+/* AuthModal.module.css — Minimalist auth overlay */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+@media (min-width: 480px) {
+  .overlay {
+    align-items: center;
+  }
+}
+
+.panel {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 16px 16px 0 0;
+  padding: 32px 28px 40px;
+  font-family: 'Space Grotesk', sans-serif;
+  position: relative;
+  /* bg + border applied inline for theme reactivity */
+}
+
+@media (min-width: 480px) {
+  .panel {
+    border-radius: 16px;
+    padding: 36px 32px;
+  }
+}
+
+.dragHandle {
+  width: 36px;
+  height: 4px;
+  border-radius: 2px;
+  background: currentColor;
+  opacity: 0.15;
+  margin: 0 auto 28px;
+}
+
+@media (min-width: 480px) {
+  .dragHandle {
+    display: none;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.closeButton:hover {
+  opacity: 0.7;
+}
+
+.logoRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.logoBox {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ef4444 0%, #f97316 50%, #fbbf24 100%);
+}
+
+.heading {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.subtext {
+  font-size: 13px;
+  line-height: 1.65;
+  margin-bottom: 28px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.dividerLine {
+  flex: 1;
+  height: 1px;
+}
+
+.dividerLabel {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.socialButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 13px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+  border: 1px solid transparent;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.socialButton:hover:not(:disabled) {
+  opacity: 0.88;
+}
+
+.socialButton:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.socialButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.disclaimer {
+  font-size: 10px;
+  text-align: center;
+  margin-top: 20px;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}

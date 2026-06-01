@@ -1,0 +1,47 @@
+/**
+ * GradientText.module.css
+ *
+ * Root cause of the theme-toggle repaint bug:
+ *   Chrome/WebKit batch the background-clip: text compositing pass separately
+ *   from normal color repaints. When only the surrounding context changes
+ *   (theme class, not the element itself), the GPU compositing layer holding
+ *   the clipped gradient is NOT invalidated — resulting in a "frozen" solid
+ *   gradient square until a full page reload forces layer promotion.
+ *
+ * Fix strategy (layered):
+ *   1. `display: inline-block` — creates an independent formatting context,
+ *      preventing the element from sharing a compositing layer with siblings.
+ *   2. `transform: translateZ(0)` — promotes to a dedicated GPU layer.
+ *      Any GPU-layer change forces WebKit to re-rasterize its contents.
+ *   3. `will-change: opacity` — hints to the browser that this element's
+ *      visual appearance may change, keeping it off the main compositing tree.
+ *   4. `isolation: isolate` — establishes a new stacking context, preventing
+ *      filter/blend inheritance that can corrupt the background-clip mask.
+ *   5. `key={themeKey}` in the component — forces a React remount on toggle,
+ *      guaranteeing a fresh DOM node with no cached rasterization data.
+ */
+
+.gradientText {
+  display: inline-block;
+
+  /* Background clip — both vendor prefix and standard */
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  /* Makes the background gradient visible through transparent text fill */
+  -webkit-text-fill-color: transparent;
+  color: transparent; /* fallback for non-WebKit */
+
+  /* GPU compositing layer promotion */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+
+  /* Signal to compositor that visual properties will change */
+  will-change: opacity;
+
+  /* New stacking context — prevents inherited filter/blend corruption */
+  isolation: isolate;
+
+  /* Prevent text from wrapping mid-gradient for short keywords */
+  white-space: nowrap;
+}

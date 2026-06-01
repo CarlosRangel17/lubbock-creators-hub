@@ -1,9 +1,9 @@
 import { motion } from "motion/react";
-import { Bed, MapPin, Heart, Music, GraduationCap, ArrowLeft, Mic2, Star, Spade,Users } from "lucide-react";
+import { Bed, MapPin, Heart, GraduationCap, ArrowLeft, Mic2, Star, Spade, Users } from "lucide-react";
 import { useTheme } from "./ThemeContext";
 import { useNavigation } from "./NavigationContext";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-// import carlosVihuelaPhoto from '../assets/mariachi-new-era-trio.webp'
+import { GradientText } from "./GradientText";
 import carlosVihuelaPhoto from '../assets/mariachi-new-era-four.png'
 
 const mariachTimeline = [
@@ -115,14 +115,7 @@ export function AboutPage() {
             }}
           >
             My<br />
-            <span style={{
-              background: "linear-gradient(135deg, #ef4444 0%, #f97316 50%, #fbbf24 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}>
-              Story.
-            </span>
+            <GradientText>Story.</GradientText>
           </motion.h1>
 
           <motion.p

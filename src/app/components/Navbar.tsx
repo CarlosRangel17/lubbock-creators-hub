@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Zap, Sun, Moon } from "lucide-react";
+import { Menu, X, Zap, Sun, Moon, User } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useTheme } from "./ThemeContext";
 import { useNavigation } from "./NavigationContext";
+import { useAuth } from "./auth/AuthContext";
+import { AuthModal } from "./auth/AuthModal";
+import { track } from "../services/analyticsService";
 
 const homeLinks = [
   { label: "Local", anchor: "#local" },
@@ -13,8 +16,15 @@ const homeLinks = [
 export function Navbar() {
   const { tokens, toggle } = useTheme();
   const { page, navigate } = useNavigation();
+  const { user, isLoading: authLoading } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const openAuthModal = () => {
+    track({ name: "auth_modal_opened" });
+    setAuthModalOpen(true);
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -131,6 +141,30 @@ export function Navbar() {
 
           {/* Right side controls */}
           <div className="flex items-center gap-2">
+            {/* Auth trigger */}
+            <motion.button
+              onClick={openAuthModal}
+              whileTap={{ scale: 0.88 }}
+              className="hidden md:flex items-center justify-center w-9 h-9 rounded-xl transition-all relative"
+              style={{
+                background: user
+                  ? "linear-gradient(135deg, #ef4444 0%, #f97316 50%, #fbbf24 100%)"
+                  : isLight ? "#f1f5f9" : "rgba(255,255,255,0.07)",
+                border: `1px solid ${user ? "transparent" : isLight ? "#e2e8f0" : "rgba(255,255,255,0.12)"}`,
+                color: user ? "#fff" : tokens.mutedColor,
+              }}
+              aria-label={user ? `Signed in as ${user.name}` : "Sign in"}
+              title={user ? `Signed in as ${user.name}` : "Sign in"}
+            >
+              {authLoading ? (
+                <motion.span animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }}>
+                  <User size={15} />
+                </motion.span>
+              ) : (
+                <User size={15} />
+              )}
+            </motion.button>
+
             <motion.button
               onClick={toggle}
               whileTap={{ scale: 0.88 }}
@@ -289,6 +323,9 @@ export function Navbar() {
           </>
         )}
       </AnimatePresence>
+
+      {/* Auth Modal — rendered at Navbar root so it overlays everything */}
+      <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, useCallback } from "react";
 
 export type ThemeMode = "light" | "dark";
 
@@ -171,11 +171,18 @@ const darkTokens: ThemeTokens = {
 
 interface ThemeContextValue {
   tokens: ThemeTokens;
+  /**
+   * Monotonically incrementing counter that bumps on every toggle.
+   * Pass as `key={themeKey}` to gradient text elements to force
+   * a DOM remount and clear the browser's background-clip compositing cache.
+   */
+  themeKey: number;
   toggle: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextValue>({
   tokens: lightTokens,
+  themeKey: 0,
   toggle: () => {},
 });
 
@@ -186,17 +193,24 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
     return "light";
   });
+  const [themeKey, setThemeKey] = useState(0);
 
   useEffect(() => {
     localStorage.setItem("cr-theme", mode);
     document.documentElement.setAttribute("data-theme", mode);
   }, [mode]);
 
-  const toggle = () => setMode((m) => (m === "light" ? "dark" : "light"));
+  const toggle = useCallback(() => {
+    setMode((m) => (m === "light" ? "dark" : "light"));
+    // Bump key AFTER the mode update so GradientText remounts
+    // with the new mode already committed in context.
+    setThemeKey((k) => k + 1);
+  }, []);
+
   const tokens = mode === "light" ? lightTokens : darkTokens;
 
   return (
-    <ThemeContext.Provider value={{ tokens, toggle }}>
+    <ThemeContext.Provider value={{ tokens, themeKey, toggle }}>
       <div
         style={{
           background: tokens.canvasBg,

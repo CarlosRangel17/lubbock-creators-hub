@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { MapPin, ArrowRight, ChevronDown, Linkedin, Github } from "lucide-react";
 import { useTheme } from "./ThemeContext";
+import { GradientText } from "./GradientText";
 import carlosPhoto from '../assets/carlos-luna-2.jpg'
 
 export function Hero() {
@@ -90,17 +91,8 @@ export function Hero() {
                 transition: "color 0.35s ease",
               }}
             >
-              I refuse to build{" "}
-              <span style={{
-                background: isLight
-                  ? "linear-gradient(135deg, #ef4444 0%, #f43f5e 100%)"
-                  : "linear-gradient(135deg, #ef4444 0%, #f87171 50%, #fbbf24 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}>
-                boring
-              </span>
+               I refuse to build{" "}
+              <GradientText>boring</GradientText>
               <br />websites.
             </motion.h1>
           </div>

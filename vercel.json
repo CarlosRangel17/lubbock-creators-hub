@@ -1,0 +1,17 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    },
+    {
+      "source": "/assets/(.*)",
+      "destination": "/src/assets/$1"
+    },
+    {
+      "source": "/((?!api|src|node_modules|@vite|@react-refresh).*)" ,
+      "destination": "/index.html"
+    }
+  ]
+}
