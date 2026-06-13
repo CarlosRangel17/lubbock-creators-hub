@@ -1,76 +1,77 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ExternalLink, ChevronLeft, ChevronRight, Github, Box, MapPin, BedDouble, Layers, Grid3X3, Globe, Code2 } from "lucide-react";
+import { ExternalLink, ChevronLeft, ChevronRight, Github, MapPin, BedDouble, Layers, Grid3X3, Globe, Code2, Music } from "lucide-react";
 import { useTheme } from "./ThemeContext";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 const projects = [
   {
-    id: "donation-box",
-    title: "Donation Box",
-    subtitle: "Web3 Micro-Donation Platform",
-    description: "A mobile-first UI that enables a visitor to donate funds to a smart contract on the Gōn network. Permissionless, trustless giving at scale.",
-    tags: ["Web3", "Blockchain", "Solidity", "Ethereum", "Hardhat", "React", "Next.js"],
+    id: "musicians-creators-hub",
+    title: "Musicians Creators Hub",
+    subtitle: "Musician Booking Platform",
+    description: "A mobile-first UI that enables a visitor frictionless digital booking and tableside song requests.",
+    tags: ["Musician", "Digital Booking", "Tableside Song Requests"],
     accentKey: "amber" as const,
-    IconComponent: Box,
-    imageUrl: "https://images.unsplash.com/photo-1728739529355-31dcaefd82b7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+    IconComponent: Music,
+    imageUrl: "https://images.unsplash.com/photo-1654576205088-6503ad4ffb72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXJpYWNoaSUyMGJhbmQlMjBwZXJmb3JtaW5nJTIwbGl2ZSUyMG11c2ljfGVufDF8fHx8MTc3OTY0NDQ1N3ww&ixlib=rb-4.1.0&q=80&w=1080",
     clipPath: "polygon(0 0, 100% 0, 100% 78%, 82% 100%, 0 100%)",
+    url: 'https://musician-creators-hub.vercel.app/'
   },
-  {
-    id: "delivery-tracker",
-    title: "Delivery Tracker",
-    subtitle: "Real-Time Shipment Intelligence",
-    description: "Real-time shipment tracking with an integrated Google Map, customer privacy controls, and security-first API architecture.",
-    tags: ["React", "Next.js", "SASS", "CSS3", "Google Maps API"],
-    accentKey: "blue" as const,
-    IconComponent: MapPin,
-    imageUrl: "https://images.unsplash.com/photo-1727884014409-8adae3699b17?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
-    clipPath: "polygon(0 0, 86% 0, 100% 20%, 100% 100%, 0 100%)",
-  },
-  {
-    id: "mattress-matcher",
-    title: "MattressMatcher",
-    subtitle: "AI-Powered Product Recommender",
-    description: "A quiz and recommendation engine that takes the guesswork out of mattress shopping, matching users to ideal products via Sleep Expert logic.",
-    tags: ["React", "Next.js", "SASS", "CSS3", "TypeScript"],
-    accentKey: "purple" as const,
-    IconComponent: BedDouble,
-    imageUrl: "https://images.unsplash.com/photo-1556597243-3e1b4a3449a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
-    clipPath: "polygon(0 8%, 100% 0, 100% 92%, 0 100%)",
-  },
-  {
-    id: "mf-component-lib",
-    title: "MF Component Library",
-    subtitle: "Enterprise Design System",
-    description: "Mattress Firm's internal React component library — 50+ accessible components adhering to WCAG 2.1 AA, built for speed and consistency.",
-    tags: ["React", "TypeScript", "Storybook", "A11y", "SASS"],
-    accentKey: "green" as const,
-    IconComponent: Layers,
-    imageUrl: "https://images.unsplash.com/photo-1593720213681-e9a8778330a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
-    clipPath: "polygon(0 0, 100% 0, 100% 100%, 16% 100%, 0 82%)",
-  },
-  {
-    id: "tic-tac-toe",
-    title: "Tic Tac Toe",
-    subtitle: "Classic 3x3 Strategy Game",
-    description: "A polished, classic 3x3 game of Tic Tac Toe — play with your friends. Built with React Hooks and SASS. Fun, accessible, and snappy.",
-    tags: ["React", "SASS", "React Hooks", "CSS Animations"],
-    accentKey: "pink" as const,
-    IconComponent: Grid3X3,
-    imageUrl: "https://images.unsplash.com/photo-1677816156435-e844da620fa9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
-    clipPath: "polygon(14% 0, 100% 0, 86% 100%, 0 100%)",
-  },
-  {
-    id: "devops-hackathon",
-    title: "DevOps Hackathon Site",
-    subtitle: "2020 Cloud Hackathon",
-    description: "A hackathon site for Sogeti professionals to collaborate and create projects enhancing DevOps unified offerings — quality assurance and cloud-based development.",
-    tags: ["HTML5", "CSS3", "JavaScript", "Azure", "CI/CD"],
-    accentKey: "cyan" as const,
-    IconComponent: Globe,
-    imageUrl: "https://images.unsplash.com/photo-1561233835-f937539b95b9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
-    clipPath: "polygon(0 0, 100% 0, 90% 50%, 100% 100%, 0 100%)",
-  },
+  // {
+  //   id: "delivery-tracker",
+  //   title: "Delivery Tracker",
+  //   subtitle: "Real-Time Shipment Intelligence",
+  //   description: "Real-time shipment tracking with an integrated Google Map, customer privacy controls, and security-first API architecture.",
+  //   tags: ["React", "Next.js", "SASS", "CSS3", "Google Maps API"],
+  //   accentKey: "blue" as const,
+  //   IconComponent: MapPin,
+  //   imageUrl: "https://images.unsplash.com/photo-1727884014409-8adae3699b17?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+  //   clipPath: "polygon(0 0, 86% 0, 100% 20%, 100% 100%, 0 100%)",
+  // },
+  // {
+  //   id: "mattress-matcher",
+  //   title: "MattressMatcher",
+  //   subtitle: "AI-Powered Product Recommender",
+  //   description: "A quiz and recommendation engine that takes the guesswork out of mattress shopping, matching users to ideal products via Sleep Expert logic.",
+  //   tags: ["React", "Next.js", "SASS", "CSS3", "TypeScript"],
+  //   accentKey: "purple" as const,
+  //   IconComponent: BedDouble,
+  //   imageUrl: "https://images.unsplash.com/photo-1556597243-3e1b4a3449a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+  //   clipPath: "polygon(0 8%, 100% 0, 100% 92%, 0 100%)",
+  // },
+  // {
+  //   id: "mf-component-lib",
+  //   title: "MF Component Library",
+  //   subtitle: "Enterprise Design System",
+  //   description: "Mattress Firm's internal React component library — 50+ accessible components adhering to WCAG 2.1 AA, built for speed and consistency.",
+  //   tags: ["React", "TypeScript", "Storybook", "A11y", "SASS"],
+  //   accentKey: "green" as const,
+  //   IconComponent: Layers,
+  //   imageUrl: "https://images.unsplash.com/photo-1593720213681-e9a8778330a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+  //   clipPath: "polygon(0 0, 100% 0, 100% 100%, 16% 100%, 0 82%)",
+  // },
+  // {
+  //   id: "tic-tac-toe",
+  //   title: "Tic Tac Toe",
+  //   subtitle: "Classic 3x3 Strategy Game",
+  //   description: "A polished, classic 3x3 game of Tic Tac Toe — play with your friends. Built with React Hooks and SASS. Fun, accessible, and snappy.",
+  //   tags: ["React", "SASS", "React Hooks", "CSS Animations"],
+  //   accentKey: "pink" as const,
+  //   IconComponent: Grid3X3,
+  //   imageUrl: "https://images.unsplash.com/photo-1677816156435-e844da620fa9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+  //   clipPath: "polygon(14% 0, 100% 0, 86% 100%, 0 100%)",
+  // },
+  // {
+  //   id: "devops-hackathon",
+  //   title: "DevOps Hackathon Site",
+  //   subtitle: "2020 Cloud Hackathon",
+  //   description: "A hackathon site for Sogeti professionals to collaborate and create projects enhancing DevOps unified offerings — quality assurance and cloud-based development.",
+  //   tags: ["HTML5", "CSS3", "JavaScript", "Azure", "CI/CD"],
+  //   accentKey: "cyan" as const,
+  //   IconComponent: Globe,
+  //   imageUrl: "https://images.unsplash.com/photo-1561233835-f937539b95b9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+  //   clipPath: "polygon(0 0, 100% 0, 90% 50%, 100% 100%, 0 100%)",
+  // },
 ];
 
 type AccentKey = "amber" | "blue" | "purple" | "green" | "pink" | "cyan";
@@ -208,7 +209,7 @@ export function Projects() {
                 </div>
                 {/* Project links on image */}
                 <div style={{ position: "absolute", bottom: "16px", right: "16px", display: "flex", gap: "8px" }}>
-                  <button
+                  {/* <button
                     className="flex items-center justify-center w-9 h-9 rounded-xl transition-all"
                     style={{
                       background: tokens.cardBg,
@@ -219,8 +220,10 @@ export function Projects() {
                     aria-label="View source"
                   >
                     <Github size={14} />
-                  </button>
-                  <button
+                  </button> */}
+                  <a
+                    href={project.url}
+                    target="_blank"
                     className="flex items-center justify-center w-9 h-9 rounded-xl transition-all"
                     style={{
                       background: accent.bg,
@@ -231,7 +234,7 @@ export function Projects() {
                     aria-label="Open project"
                   >
                     <ExternalLink size={14} />
-                  </button>
+                  </a>
                 </div>
               </div>
 
