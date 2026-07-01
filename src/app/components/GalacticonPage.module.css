@@ -1,0 +1,746 @@
+/* GalacticonPage.module.css ───────────────────────────────────────────────
+   Sci-fi convention POC page styles.
+   Max viewport: 393px (iPhone 14 Pro standard canvas).
+   All rem values are calibrated for single-thumb mobile reach zones.
+   ─────────────────────────────────────────────────────────────────────── */
+
+/* ── Layout root ─────────────────────────────────────────────────────────── */
+
+.pageRoot {
+  min-height: 100vh;
+  background: #0b0f19;
+  color: #f8fafc;
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ── Sci-fi background overlay ───────────────────────────────────────────── */
+
+.bgCanvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.045;
+}
+
+/* ── Sticky nav ──────────────────────────────────────────────────────────── */
+
+.stickyNav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  background: rgba(11, 15, 25, 0.88);
+  border-bottom: 1px solid rgba(124, 58, 237, 0.22);
+}
+
+.navLogo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navLogoBox {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #7c3aed 0%, #ef4444 50%, #fbbf24 100%);
+}
+
+.navLogoText {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #f8fafc;
+}
+
+.boothBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 100px;
+  padding: 5px 10px;
+}
+
+.boothBadgeText {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #10B981;
+  text-transform: uppercase;
+}
+
+.liveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10B981;
+  animation: livePulse 2s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 6px #10B981; }
+  50% { opacity: 0.4; box-shadow: none; }
+}
+
+/* ── URL tracker panel ───────────────────────────────────────────────────── */
+
+.urlTracker {
+  margin: 0 16px 0;
+  padding: 10px 14px;
+  background: rgba(124, 58, 237, 0.08);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.urlTrackerLabel {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+}
+
+.urlTrackerValue {
+  font-size: 10px;
+  color: rgba(124, 58, 237, 0.85);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 220px;
+}
+
+.urlStatusChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 4px;
+  padding: 3px 7px;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #10B981;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+/* ── Section wrapper ─────────────────────────────────────────────────────── */
+
+.section {
+  position: relative;
+  z-index: 1;
+  padding: 32px 16px;
+}
+
+.sectionLabel {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.labelDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Gradient text ───────────────────────────────────────────────────────── */
+
+.gradientHeadline {
+  background: linear-gradient(135deg, #7c3aed 0%, #ef4444 50%, #fbbf24 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline;
+}
+
+/* ── Cost comparison widget ──────────────────────────────────────────────── */
+
+.costGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.costCard {
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+.costCardOld {
+  background: rgba(239, 68, 68, 0.06);
+  border-color: rgba(239, 68, 68, 0.18);
+}
+
+.costCardNew {
+  background: rgba(16, 185, 129, 0.06);
+  border-color: rgba(16, 185, 129, 0.22);
+}
+
+.costPlatform {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.costAmount {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.costPer {
+  font-size: 10px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 3px;
+}
+
+.savingsBanner {
+  margin-top: 10px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(124,58,237,0.12) 0%, rgba(251,191,36,0.08) 100%);
+  border: 1px solid rgba(124, 58, 237, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.savingsLabel {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.45);
+  text-transform: uppercase;
+}
+
+.savingsAmount {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(90deg, #10B981, #fbbf24);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Terminal / QR section ───────────────────────────────────────────────── */
+
+.terminalCard {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  border-radius: 16px;
+  padding: 24px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.terminalCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  box-shadow: 0 0 40px rgba(124,58,237,0.15) inset;
+  pointer-events: none;
+}
+
+.qrWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.qrFrame {
+  border-radius: 12px;
+  padding: 12px;
+  background: #ffffff;
+  position: relative;
+}
+
+.qrGlow {
+  position: absolute;
+  inset: -4px;
+  border-radius: 14px;
+  box-shadow: 0 0 24px rgba(124,58,237,0.5), 0 0 48px rgba(124,58,237,0.25);
+  z-index: -1;
+}
+
+.qrLabel {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+
+.orDivider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.orLine {
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+}
+
+.orText {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+}
+
+/* ── Payment buttons ─────────────────────────────────────────────────────── */
+
+.payBtn {
+  width: 100%;
+  min-height: 56px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.12s ease, opacity 0.15s ease;
+  font-family: 'Space Grotesk', sans-serif;
+  border: none;
+}
+
+.payBtn:active {
+  transform: scale(0.97);
+}
+
+.payBtnPrimary {
+  background: linear-gradient(135deg, #d97706 0%, #fbbf24 100%);
+  color: #0b0f19;
+  box-shadow: 0 8px 28px rgba(251,191,36,0.35), 0 0 0 1px rgba(251,191,36,0.3);
+}
+
+.payBtnSecondary {
+  background: transparent;
+  color: #c4b5fd;
+  border: 1.5px solid rgba(124,58,237,0.5) !important;
+  box-shadow: 0 0 16px rgba(124,58,237,0.15);
+}
+
+/* ── Product carousel ────────────────────────────────────────────────────── */
+
+.carouselTrack {
+  display: flex;
+  overflow-x: auto;
+  gap: 14px;
+  padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.carouselTrack::-webkit-scrollbar {
+  display: none;
+}
+
+.productCard {
+  flex: 0 0 82vw;
+  max-width: 320px;
+  scroll-snap-align: start;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+.productImgSlot {
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.productImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.productBody {
+  padding: 14px 14px 16px;
+}
+
+.productNameRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.productName {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #f8fafc;
+  line-height: 1.25;
+}
+
+.priceToken {
+  background: linear-gradient(135deg, #7c3aed, #ef4444);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  padding: 3px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.productSubtitle {
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 10px;
+  letter-spacing: 0.01em;
+}
+
+.chipsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.materialChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: 6px;
+  border: 1px solid;
+}
+
+.addBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  transition: transform 0.12s ease, box-shadow 0.15s ease;
+  flex-shrink: 0;
+  color: #0b0f19;
+  background: linear-gradient(135deg, #fbbf24, #d97706);
+}
+
+.addBtn:active {
+  transform: scale(0.92);
+  box-shadow: 0 0 20px rgba(251,191,36,0.5);
+}
+
+.carouselHint {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.25);
+  text-align: center;
+  margin-top: 14px;
+  text-transform: uppercase;
+}
+
+/* ── Lead form ───────────────────────────────────────────────────────────── */
+
+.formCard {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.formHeader {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.formHeaderLabel {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+}
+
+.formHeaderId {
+  font-size: 10px;
+  color: rgba(124,58,237,0.6);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.formFields {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.fieldGroup {
+  position: relative;
+}
+
+.fieldInput {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  color: #f8fafc;
+  font-size: 14px;
+  padding: 20px 0 8px 0;
+  outline: none;
+  font-family: 'Space Grotesk', sans-serif;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+  border-radius: 0;
+}
+
+.fieldInput:focus {
+  border-bottom-color: rgba(124,58,237,0.7);
+}
+
+.fieldInput::placeholder {
+  color: transparent;
+}
+
+.fieldLabel {
+  position: absolute;
+  left: 0;
+  top: 20px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
+  transition: all 0.18s ease;
+  pointer-events: none;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.fieldInput:focus ~ .fieldLabel,
+.fieldInput:not(:placeholder-shown) ~ .fieldLabel {
+  top: 2px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(124,58,237,0.8);
+}
+
+.fieldTextarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  color: #f8fafc;
+  font-size: 14px;
+  padding: 20px 0 8px 0;
+  outline: none;
+  font-family: 'Space Grotesk', sans-serif;
+  transition: border-color 0.2s ease;
+  resize: none;
+  box-sizing: border-box;
+  border-radius: 0;
+}
+
+.fieldTextarea:focus {
+  border-bottom-color: rgba(124,58,237,0.7);
+}
+
+.offlineNotice {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 14px;
+  background: rgba(16,185,129,0.06);
+  border: 1px solid rgba(16,185,129,0.18);
+  border-radius: 8px;
+  font-size: 10px;
+  color: rgba(16,185,129,0.8);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.formDivider {
+  height: 1px;
+  background: rgba(255,255,255,0.06);
+  margin: 4px 0;
+}
+
+/* ── Transmit CTA button ─────────────────────────────────────────────────── */
+
+.transmitBtn {
+  width: 100%;
+  min-height: 56px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: 'Space Grotesk', sans-serif;
+  transition: transform 0.12s ease, box-shadow 0.15s ease;
+  clip-path: polygon(0 0, 100% 0, 96% 100%, 0 100%);
+  background: linear-gradient(135deg, #7c3aed 0%, #ef4444 55%, #fbbf24 100%);
+  color: #fff;
+  box-shadow: 0 8px 28px rgba(124,58,237,0.4), 0 0 0 1px rgba(124,58,237,0.3);
+}
+
+.transmitBtn:hover {
+  box-shadow: 0 12px 36px rgba(124,58,237,0.55), 0 0 0 1px rgba(124,58,237,0.4);
+}
+
+.transmitBtn:active {
+  transform: scale(0.98);
+}
+
+.transmitBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.transmitBtnWrapper {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Analytics pill ──────────────────────────────────────────────────────── */
+
+.analyticsPill {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(11, 15, 25, 0.92);
+  border: 1px solid rgba(16,185,129,0.3);
+  border-radius: 100px;
+  padding: 7px 14px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.analyticsPillDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 8px #10B981;
+  flex-shrink: 0;
+}
+
+.analyticsPillText {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(16,185,129,0.8);
+  text-transform: uppercase;
+}
+
+/* ── Evergreen fallback ──────────────────────────────────────────────────── */
+
+.evergreenRoot {
+  min-height: 100vh;
+  background: #0b0f19;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  text-align: center;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.evergreenIcon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #7c3aed 0%, #ef4444 50%, #fbbf24 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+}
+
+/* ── Misc utility ────────────────────────────────────────────────────────── */
+
+.dividerLine {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(124,58,237,0.3), transparent);
+  margin: 8px 0;
+}
+
+.successPanel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  text-align: center;
+  gap: 12px;
+}

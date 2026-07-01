@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useCallback } from "react";
 
-export type PageName = "home" | "about";
+export type PageName = "home" | "about" | "galacticon";
 
 interface NavigationContextValue {
   page: PageName;
